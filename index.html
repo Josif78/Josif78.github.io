@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <script src='js/firebase.js'></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/simple-sidebar.css" rel="stylesheet" />
+    <script src='js/jquery.min.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/vue.js'></script>
+    <script src='js/arcfire.js'></script>
+  </head>
+  <body>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container">
+              <form class="form-horizontal">
+                  <fieldset>
+
+                  <!-- Form Name -->
+                  <legend>Firebase Recipes</legend>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-2 control-label" for="textinput">Recipe</label>  
+                    <div class="col-md-4">
+                    <input id="textinput" name="textinput" type="text" placeholder="recipe name" class="form-control input-md" required="">
+                      
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-2 control-label" for="textinput">Classification</label>  
+                    <div class="col-md-4">
+                    <input id="textinput" name="textinput" type="text" placeholder="classification" class="form-control input-md">
+                      
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-2 control-label" for="textinput">Ingredient</label>  
+                    <div class="col-md-4">
+                    <input id="textinput" name="textinput" type="text" placeholder="ingredient" class="form-control input-md">
+                      
+                    </div>
+                  </div>
+
+                  <!-- Button -->
+                  <div class="form-group">
+                    <label class="col-md-2 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                      <button id="singlebutton" name="singlebutton" class="btn btn-primary">Add</button>
+                    </div>
+                  </div>
+
+                  </fieldset>
+              </form>
+          </div>
+            
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+  </body>
+</html>
