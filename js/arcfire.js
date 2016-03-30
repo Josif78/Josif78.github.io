@@ -2,7 +2,6 @@
 const url = 'https://arcfire-recipes.firebaseio.com';
 
 
-
 let app = new Vue({
     el: '#app',
     data: {
@@ -37,7 +36,14 @@ let app = new Vue({
             this.title = recipe.title;
             this.classification = recipe.classification;
             this.ingredient = '';
-            this.ingredients = recipe.ingredients.concat([]);
+            this.ingredients = '';
+
+            if(_.isNull(recipe.ingredients)) {
+                this.ingredients = [];
+            }
+            else {
+                this.ingredients = recipe.ingredients.concat([]);
+            }
         },
         saveRecipe: function(string) {
             //console.log(this.getLargestID());
@@ -48,21 +54,33 @@ let app = new Vue({
                     }
                 });
 
+                if (typeof (this.recipes) !== typeof ([])) {
+                    this.recipes = [];
+                }
+
+                    //add new recipe
                 if (recipe === undefined) {
+                    let temp = this.ingredients.length>0? this.ingredients: '';
                     let newRecipe = {
 
                         id: this.getLargestID(),
                         title: this.title,
                         classification: this.classification,
-                        ingredients: this.ingredients
+                        ingredients: temp
+                    }
+                    if(_.isNull(this.recipes)) {
+                        this.recipes = [];
                     }
 
                     this.recipes.push(newRecipe);
+                    Recipes.set(this.recipes);
                 }
+                    //edit existing recipe
                 else {
                     recipe.title = this.title;
                     recipe.classification = this.classification;
                     recipe.ingredients = this.ingredients;
+                    Recipes.set(this.recipes);
                 }
             }
             else {
@@ -78,6 +96,7 @@ let app = new Vue({
 
             this.recipes.$remove(recipe);
             this.clearInputs();
+            Recipes.set(this.recipes);
         },
         clearInputs: function() {
             this.id = this.title = this.classification = this.ingredient = '';
@@ -85,3 +104,14 @@ let app = new Vue({
         }
     }
 });
+
+let Recipes = new Firebase(url);
+
+function yeah(snapshot) {
+  app.recipes = snapshot.val();
+}
+
+Recipes.on('value', yeah);
+Recipes.on('child_added', yeah);
+Recipes.on('child_removed', yeah);
+Recipes.on('child_changed', yeah);
