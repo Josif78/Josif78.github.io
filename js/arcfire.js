@@ -1,7 +1,6 @@
 'use strict';
 const url = 'https://arcfire-recipes.firebaseio.com';
 
-
 let app = new Vue({
     el: '#app',
     data: {
