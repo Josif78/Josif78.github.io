@@ -22,9 +22,10 @@
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->
+
             <!-- Page Content -->
             <div id="page-content-wrapper">
-                <div class="container">
+                <div class="container-fluid">
                     <form class="form-horizontal">
                         <fieldset>
                             <!-- Form Name -->
@@ -57,19 +58,24 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput"></label>
                                     <div class="col-md-4">
-                                        <button id="button1id" v-on:click.stop.prevent="saveRecipe(title)" vname="button1id" class="btn btn-success">Save</button>
+                                        <button id="button1id" v-on:click.stop.prevent="saveRecipe(id)" vname="button1id" class="btn btn-success">Save</button>
                                         <button id="button2id" v-on:click.stop.prevent="deleteRecipe(title)" name="button2id" class="btn btn-danger">Delete</button>
                                     </div>
                             </div>
                         </fieldset>
 
                     </form>
-                    <ul class="list-group" v-for="ingredient in ingredients" track-by="$index">
-                    <li class="row list-group-item">
-                        <span class="col-md-2">{{ingredient}}</span>
-                        <input class="col-md-1 col-md-offset-2 btn btn-danger" v-on:click.stop.prevent="deleteIngredient(ingredient)" type="button" value="Remove"/>
-                    </li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <ul class="list-group" v-for="ingredient in ingredients" track-by="$index">
+                            <li class="row list-group-item">
+                                <span class="col-md-9">{{ingredient}}</span>
+                                <input class="col-md-3 btn btn-danger" v-on:click.stop.prevent="deleteIngredient(ingredient)" type="button" value="Remove"/>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /#page-content-wrapper -->
