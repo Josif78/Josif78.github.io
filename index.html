@@ -10,13 +10,15 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
-                        <a href="#">
-                            Start Bootstrap
+                        <a href="#" v-on:click="clearInputs()">
+                            + Add New Recipe
                         </a>
                     </li>
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
+                    <ul v-for="recipe in recipes">
+                        <li>
+                            <a href="#" v-on:click="setRecipe(recipe)">{{recipe.title}}</a>
+                        </li>
+                    </ul>
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -29,9 +31,9 @@
                             <legend>Firebase Recipes</legend>
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="textinput">Recipe</label>
+                                <label class="col-md-2 control-label" for="textinput">Recipe Name</label>
                                 <div class="col-md-4">
-                                    <input id="textinput" v-model="title" name="textinput" type="text" placeholder="recipe name" class="form-control input-md">
+                                    <input id="textinput" v-model="title" value={{title}} name="textinput" type="text" placeholder="ex: No-bake Cheesecake" class="form-control input-md" required="">
                                     
                                 </div>
                             </div>
@@ -39,32 +41,36 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Classification</label>
                                 <div class="col-md-4">
-                                    <input id="textinput" v-model="classification" name="textinput" type="text" placeholder="classification" class="form-control input-md">
+                                    <input id="textinput" v-model="classification" name="textinput" type="text" placeholder="ex: Western Pastries" class="form-control input-md">
                                     
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Ingredient</label>
                                 <div class="col-md-4">
-                                    <input id="textinput" v-model="ingredient" name="textinput" type="text" placeholder="ingredient" class="form-control input-md">
+                                    <input id="textinput" v-model="ingredient" name="textinput" type="text" placeholder="ex: Cream Cheese" class="form-control input-md">
                                 </div>
                                 <div class="col-md-2">
                                     <button id="singlebutton" v-on:click.stop.prevent="addIngredient()" name="singlebutton" class="btn btn-primary">Add</button>
                                 </div>
                             </div>
-                            
-                            
-                            
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput"></label>
+                                    <div class="col-md-4">
+                                        <button id="button1id" v-on:click.stop.prevent="saveRecipe(title)" vname="button1id" class="btn btn-success">Save</button>
+                                        <button id="button2id" v-on:click.stop.prevent="deleteRecipe(title)" name="button2id" class="btn btn-danger">Delete</button>
+                                    </div>
+                            </div>
                         </fieldset>
+
                     </form>
                     <ul class="list-group" v-for="ingredient in ingredients" track-by="$index">
                     <li class="row list-group-item">
-                        <span class="col-md-4">{{ingredient}}</span>
-                        <input class="col-md-2 col-md-offset-8 btn btn-danger" v-on:click.stop.prevent="deleteIngredient(ingredient)" type="button" value="Delete"/>
+                        <span class="col-md-2">{{ingredient}}</span>
+                        <input class="col-md-1 col-md-offset-2 btn btn-danger" v-on:click.stop.prevent="deleteIngredient(ingredient)" type="button" value="Remove"/>
                     </li>
                     </ul>
                 </div>
-                
             </div>
             <!-- /#page-content-wrapper -->
         </div>
